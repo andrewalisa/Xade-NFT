@@ -300,6 +300,9 @@ contract XadeDiamondPremiumSubscriptionsNFT is
     // Mint Price
     uint256 public mintPrice = 700 ether; // price in native token (EX: Ether for Ethereum, MATIC for Polygon, etc.)
 
+    // By Default, we will enable checking the allowlist before minting
+    bool public allowListEnabled = true;
+
     // Check if address is on the AllowList via a mapping
     mapping(address => bool) public allowList;
 
@@ -350,6 +353,14 @@ contract XadeDiamondPremiumSubscriptionsNFT is
         IERC721(token_).safeTransferFrom(address(this), msg.sender, tokenId);
     }
 
+    function disableAllowList() external onlyOwner {
+        allowListEnabled = false;
+    }
+
+    function enableAllowList() external onlyOwner {
+        allowListEnabled = true;
+    }
+
     function addToAllowList(address[] memory _addresses) external onlyOwner {
         for (uint256 i = 0; i < _addresses.length; i++) {
             allowList[_addresses[i]] = true;
@@ -381,6 +392,9 @@ contract XadeDiamondPremiumSubscriptionsNFT is
     }
 
     function mint(uint256 mintAmount) external payable nonReentrant {
+        if (allowListEnabled) {
+            require(allowList[msg.sender], "You are not allowed to mint");
+        }
         require(
             _totalSupply + mintAmount <= MAX_SUPPLY,
             "All NFTs Have Been Minted"
