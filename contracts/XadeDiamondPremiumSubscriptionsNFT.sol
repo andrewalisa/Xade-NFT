@@ -390,11 +390,11 @@ contract XadeDiamondPremiumSubscriptionsNFT is
 
         if (mintAmount >= 2) {
             // apply 10% discount for minting 2 or more tokens
-            uint256 cost = (mintPrice * mintAmount * 10) / 100;
-            payable(msg.sender).transfer(cost);
-        } else {
-            payable(address(this)).transfer(msg.value); // send the minting fee to the contract
+            uint256 discount = (mintPrice * mintAmount * 10) / 100;
+            payable(msg.sender).transfer(discount); // send the 10% discount back to the user
         }
+
+        payable(address(this)).transfer(msg.value); // send the minting fee to the contract
 
         for (uint i = 0; i < mintAmount; i++) {
             _safeMint(msg.sender, _totalSupply);
