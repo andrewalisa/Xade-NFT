@@ -300,6 +300,9 @@ contract XadeDiamondPremiumSubscriptionsNFT is
     // Mint Price
     uint256 public mintPrice = 700 ether; // price in native token (EX: Ether for Ethereum, MATIC for Polygon, etc.)
 
+    // Token ID starts from 1 instead of 0
+    uint256 private _nextTokenId = 1;
+
     // By Default, we will enable checking the allowlist before minting
     bool public allowListEnabled = true;
 
@@ -411,18 +414,21 @@ contract XadeDiamondPremiumSubscriptionsNFT is
             "All NFTs Have Been Minted"
         );
         require(mintAmount > 0, "mintAmount must be greater than 0");
-        require(msg.value >= mintPrice * mintAmount, "Insufficient funds");
 
         if (mintAmount >= 2 && discountEnabled) {
             // apply 10% discount for minting 2 or more tokens
-            uint256 discount = (mintPrice * mintAmount * 10) / 100;
-            payable(msg.sender).transfer(discount); // send the 10% discount back to the user
+            require(
+                msg.value >= (mintPrice * mintAmount * 90) / 100,
+                "Insufficient funds"
+            );
+        } else {
+            require(msg.value >= mintPrice * mintAmount, "Insufficient funds");
         }
 
         payable(address(this)).transfer(msg.value); // send the minting fee to the contract
 
         for (uint i = 0; i < mintAmount; i++) {
-            _safeMint(msg.sender, _totalSupply);
+            _safeMint(msg.sender, _nextTokenId);
         }
     }
 
@@ -434,7 +440,7 @@ contract XadeDiamondPremiumSubscriptionsNFT is
         uint nUsers = to.length;
         for (uint j = 0; j < nUsers; j++) {
             for (uint i = 0; i < mintAmount[j]; i++) {
-                _safeMint(to[j], _totalSupply);
+                _safeMint(to[j], _nextTokenId);
             }
         }
     }
@@ -518,6 +524,10 @@ contract XadeDiamondPremiumSubscriptionsNFT is
 
     function totalSupply() external view returns (uint256) {
         return _totalSupply;
+    }
+
+    function SupplyRemaining() external view returns (uint256) {
+        return MAX_SUPPLY - _totalSupply;
     }
 
     function getIDsByOwner(
@@ -702,6 +712,7 @@ contract XadeDiamondPremiumSubscriptionsNFT is
 
         _balances[to] += 1;
         _owners[tokenId] = to;
+        _nextTokenId++;
         _totalSupply++;
 
         emit Transfer(address(0), to, tokenId);
