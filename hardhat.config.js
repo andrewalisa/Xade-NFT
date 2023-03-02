@@ -47,6 +47,7 @@ module.exports = {
       goerli: ETHERSCAN_API_KEY,
       bscTestnet: BSCSCAN_API_KEY,
       bsc: BSCSCAN_API_KEY,
+      polygon: POLYGONSCAN_API_KEY,
       polygonMumbai: POLYGONSCAN_API_KEY,
     },
   },

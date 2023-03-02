@@ -10,6 +10,11 @@ npx hardhat node
 npx hardhat run scripts/deploy.js
 ```
 
+# Polygon Mainnet Address
+
+Polygon Mainnet Contract Address: https://polygonscan.com/address/0xa0c4a49fce2403c0dca9d50077a12857dce17743
+Polygonscan URL: https://polygonscan.com/address/0xa0c4a49fce2403c0dca9d50077a12857dce17743
+
 # Deploying to Mainnet
 
 Create a copy of `.env.example` and rename that to `.env` and put in your environment variables
