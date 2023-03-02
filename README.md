@@ -44,9 +44,11 @@ When the mint function is called, it checks if the requested mintAmount is great
 ```solidity
     if (mintAmount >= 2 && discountEnabled) {
         // apply 10% discount for minting 2 or more tokens
-        uint256 discount = (mintPrice * mintAmount * 10) / 100;
-        payable(msg.sender).transfer(discount); // send the 10% discount back to the user
+        require(
+            msg.value >= (mintPrice * mintAmount * 90) / 100,
+            "Insufficient funds"
+        );
+    } else {
+        require(msg.value >= mintPrice * mintAmount, "Insufficient funds");
     }
-
-    payable(address(this)).transfer(msg.value); // send the minting fee to the contract
 ```
