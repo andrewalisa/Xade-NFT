@@ -325,9 +325,9 @@ contract XadeDiamondPremiumSubscriptionsNFT is
     mapping(address => mapping(address => bool)) private _operatorApprovals;
 
     // base URI
-    string private baseURI =
+    string private _baseURI =
         "ipfs://bafybeigc3iiy6jcxavwonnsvitkoo6mk5egf4zpkyoyfsajtr5mb5n4cqu/";
-    string private ending = ".json";
+    string private _ending = ".json";
 
     ////////////////////////////////////////////////
     ///////////   CONSTRUCTOR            ///////////
@@ -395,11 +395,11 @@ contract XadeDiamondPremiumSubscriptionsNFT is
             bytes(newURI)[bytes(newURI).length - 1] == bytes1("/"),
             "Must set trailing slash"
         );
-        baseURI = newURI;
+        _baseURI = newURI;
     }
 
     function setURIExtention(string calldata newExtention) external onlyOwner {
-        ending = newExtention;
+        _ending = newExtention;
     }
 
     function setMintPrice(uint256 _mintPrice) external onlyOwner {
@@ -597,8 +597,8 @@ contract XadeDiamondPremiumSubscriptionsNFT is
     ) public view override returns (string memory) {
         require(_exists(tokenId), "nonexistent token");
 
-        string memory fHalf = string.concat(baseURI, uint2str(tokenId));
-        return string.concat(fHalf, ending);
+        string memory fHalf = string.concat(_baseURI, uint2str(tokenId));
+        return string.concat(fHalf, _ending);
     }
 
     /**
