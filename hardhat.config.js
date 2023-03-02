@@ -22,6 +22,11 @@ module.exports = {
       accounts: [PRIVATE_KEY],
       chainId: 5,
     },
+    mumbai: {
+      url: `https://rpc.ankr.com/polygon_mumbai`,
+      accounts: [PRIVATE_KEY],
+      chainId: 80001,
+    },
     bscTestnet: {
       url: `https://data-seed-prebsc-1-s1.binance.org:8545`,
       accounts: [PRIVATE_KEY],

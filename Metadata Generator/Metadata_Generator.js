@@ -5,7 +5,7 @@ function generateMetadata(number, attributeType) {
     name: `Xade Diamond Premium Subscriptions NFT #${number}`,
     symbol: "XADE",
     description: `Xade Diamond Premium Subscriptions NFT #${number}`,
-    image: `ipfs://Qmf9hZcnav1RYZ4bActVR1ZirB2hwhnVYAg4wD6HxTdroi`,
+    image: `ipfs://bafybeiexc3qukv4fg7v2upouusqhhhdpcwupcl4oaytla6phpiqyhxim6q`,
     animation_url: `ipfs://bafybeidmlstqbzdlmhyxanseaw4jkcdfdcwjcvwxmtn7vw4v4rvmbw5ala`,
   };
 

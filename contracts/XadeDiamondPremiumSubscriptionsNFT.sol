@@ -325,7 +325,8 @@ contract XadeDiamondPremiumSubscriptionsNFT is
     mapping(address => mapping(address => bool)) private _operatorApprovals;
 
     // base URI
-    string private baseURI = "";
+    string private baseURI =
+        "ipfs://bafybeigc3iiy6jcxavwonnsvitkoo6mk5egf4zpkyoyfsajtr5mb5n4cqu/";
     string private ending = ".json";
 
     ////////////////////////////////////////////////
