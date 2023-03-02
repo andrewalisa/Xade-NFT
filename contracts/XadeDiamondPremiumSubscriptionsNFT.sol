@@ -527,7 +527,7 @@ contract XadeDiamondPremiumSubscriptionsNFT is
         return _totalSupply;
     }
 
-    function SupplyRemaining() external view returns (uint256) {
+    function supplyRemaining() external view returns (uint256) {
         return MAX_SUPPLY - _totalSupply;
     }
 

@@ -7,6 +7,7 @@ require("dotenv").config();
 
 const BSCSCAN_API_KEY = process.env.BSCSCAN_API_KEY;
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
+const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const INFURA_PROJECT_ID = process.env.INFURA_PROJECT_ID;
 
@@ -41,6 +42,7 @@ module.exports = {
       goerli: ETHERSCAN_API_KEY,
       bscTestnet: BSCSCAN_API_KEY,
       bsc: BSCSCAN_API_KEY,
+      polygonMumbai: POLYGONSCAN_API_KEY,
     },
   },
   paths: {
