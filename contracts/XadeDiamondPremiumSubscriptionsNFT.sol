@@ -303,6 +303,9 @@ contract XadeDiamondPremiumSubscriptionsNFT is
     // By Default, we will enable checking the allowlist before minting
     bool public allowListEnabled = true;
 
+    // By Default, we will enable the discount
+    bool public discountEnabled = true;
+
     // Check if address is on the AllowList via a mapping
     mapping(address => bool) public allowList;
 
@@ -351,6 +354,14 @@ contract XadeDiamondPremiumSubscriptionsNFT is
     ) external onlyOwner {
         require(token_ != address(0), "Zero Address");
         IERC721(token_).safeTransferFrom(address(this), msg.sender, tokenId);
+    }
+
+    function disableDiscount() external onlyOwner {
+        discountEnabled = false;
+    }
+
+    function enableDiscount() external onlyOwner {
+        discountEnabled = true;
     }
 
     function disableAllowList() external onlyOwner {
@@ -402,7 +413,7 @@ contract XadeDiamondPremiumSubscriptionsNFT is
         require(mintAmount > 0, "mintAmount must be greater than 0");
         require(msg.value >= mintPrice * mintAmount, "Insufficient funds");
 
-        if (mintAmount >= 2) {
+        if (mintAmount >= 2 && discountEnabled) {
             // apply 10% discount for minting 2 or more tokens
             uint256 discount = (mintPrice * mintAmount * 10) / 100;
             payable(msg.sender).transfer(discount); // send the 10% discount back to the user

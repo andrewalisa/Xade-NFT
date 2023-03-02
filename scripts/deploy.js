@@ -16,7 +16,7 @@ async function main() {
   await xadeDiamondPremiumSubscriptionsNFT.deployed();
 
   console.log(
-    `FleaNFT deployed to ${xadeDiamondPremiumSubscriptionsNFT.address}`
+    `XadeDiamondPremiumSubscriptionsNFT deployed to ${xadeDiamondPremiumSubscriptionsNFT.address}`
   );
 }
 
