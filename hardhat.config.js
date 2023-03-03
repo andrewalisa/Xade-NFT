@@ -23,7 +23,7 @@ module.exports = {
       accounts: [PRIVATE_KEY],
       chainId: 5,
     },
-    mumbai: {
+    polygonMumbai: {
       url: `https://rpc.ankr.com/polygon_mumbai`,
       accounts: [PRIVATE_KEY],
       chainId: 80001,
