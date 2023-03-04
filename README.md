@@ -24,7 +24,8 @@ In the Hardhat Deploy file, make sure that the Hardhat.Config.js file and your .
 Then run:
 
 ```sh
-npx hardhat run --network localhost scripts/deploy.js
+npx hardhat run --network evm_network scripts/deployDiamond.js
+npx hardhat run --network evm_network scripts/deployGold.js
 ```
 
 # Verifying Contract
@@ -37,6 +38,7 @@ Then run:
 
 ```sh
 npx hardhat verify --network evm_network --contract "contracts/XadeDiamondPremiumSubscriptionsNFT.sol:XadeDiamondPremiumSubscriptionsNFT" replaceWithContractAddressHere
+npx hardhat verify --network evm_network --contract "contracts/XadeGoldPremiumSubscriptionsNFT.sol:XadeGoldPremiumSubscriptionsNFT" replaceWithContractAddressHere
 ```
 
 - Replace `evm_network` with the evm network you deployed to

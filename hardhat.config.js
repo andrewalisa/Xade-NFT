@@ -10,6 +10,7 @@ const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
 const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const INFURA_PROJECT_ID = process.env.INFURA_PROJECT_ID;
+const ALCHEMY_PROJECT_ID = process.env.ALCHEMY_PROJECT_ID;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -29,7 +30,7 @@ module.exports = {
       chainId: 80001,
     },
     polygon: {
-      url: `https://rpc.ankr.com/polygon`,
+      url: `https://polygon-mainnet.g.alchemy.com/v2/${ALCHEMY_PROJECT_ID}`,
       accounts: [PRIVATE_KEY],
       chainId: 137,
     },
